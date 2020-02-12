@@ -33495,9 +33495,86 @@ module.exports = ListItem;
 
 },{"create-react-class":2,"react":16}],25:[function(require,module,exports){
 var React = require('react');
+var createReactClass = require('create-react-class');
+var TableData = require('./TableData.jsx');
+
+var cities = [{ "id": 1, "city_name": "Bantul", "people_amount": "320" }, { "id": 2, "city_name": "Sleman", "people_amount": "430" }, { "id": 3, "city_name": "Yogyakarta", "people_amount": "220" }];
+
+var Table = createReactClass({
+	displayName: 'Table',
+
+	render: function () {
+		var tableData = cities.map(function (item) {
+			return React.createElement(TableData, { key: item.id, city_name: item.city_name, people_amount: item.people_amount });
+		});
+
+		return React.createElement(
+			'table',
+			{ border: '1' },
+			React.createElement(
+				'thead',
+				null,
+				React.createElement(
+					'tr',
+					null,
+					React.createElement(
+						'td',
+						null,
+						'Nama Kota'
+					),
+					React.createElement(
+						'td',
+						null,
+						'Jumlah Penduduk'
+					)
+				)
+			),
+			React.createElement(
+				'tbody',
+				null,
+				tableData
+			)
+		);
+	}
+});
+
+module.exports = Table;
+
+},{"./TableData.jsx":26,"create-react-class":2,"react":16}],26:[function(require,module,exports){
+var React = require('react');
+
+var createReactClass = require('create-react-class');
+
+var TableData = createReactClass({
+    displayName: 'TableData',
+
+    render: function () {
+        return React.createElement(
+            'tr',
+            null,
+            React.createElement(
+                'td',
+                null,
+                this.props.city_name
+            ),
+            React.createElement(
+                'td',
+                null,
+                this.props.people_amount
+            )
+        );
+    }
+});
+
+module.exports = TableData;
+
+},{"create-react-class":2,"react":16}],27:[function(require,module,exports){
+var React = require('react');
 var ReactDOM = require('react-dom');
 var List = require('./components/List.jsx');
+var Table = require('./components/Table.jsx');
 
 ReactDOM.render(React.createElement(List, null), document.getElementById('ingredients'));
+ReactDOM.render(React.createElement(Table, null), document.getElementById('cities'));
 
-},{"./components/List.jsx":23,"react":16,"react-dom":13}]},{},[25]);
+},{"./components/List.jsx":23,"./components/Table.jsx":25,"react":16,"react-dom":13}]},{},[27]);
