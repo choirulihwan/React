@@ -22,3 +22,6 @@ Repository for React and flux web app:
 -        );
 -    }
 - });
+
+# React without Node
+- use https://cdnjs.com/
