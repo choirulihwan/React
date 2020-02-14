@@ -25,3 +25,10 @@ Repository for React and flux web app:
 
 # React without Node
 - use https://cdnjs.com/
+
+# react http-server
+- npm install -g http-server
+- http-server -p <port>
+
+# react documentation
+- https://reactjs.org/
