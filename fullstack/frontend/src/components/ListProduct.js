@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { url } from '../global'
+import { numericFormatter } from 'react-number-format';
 
 const ListProduct = () => {
     const [products, setProducts] = useState([])
-    
     
     useEffect(() => {
         getProducts();
     }, [])
 
     const getProducts = async() => {
-        const products = await axios.get('http://localhost:8080/products')
+        const products = await axios.get(url)
         setProducts(products.data)
     }
 
     const deleteProduct = async (id) => {
-        await axios.delete(`http://localhost:8080/products/${id}`)
+        await axios.delete(`${url}/${id}`)
         getProducts()
     }
 
@@ -40,9 +41,13 @@ const ListProduct = () => {
                                 &nbsp;
                                 <button onClick={() => deleteProduct(product.id)} className="button is-small is-danger">Delete</button>
                             </td>
-                            <td>{index + 1}</td>
+                            <td className='has-text-right'>{index + 1}</td>
                             <td>{product.title}</td>
-                            <td>{product.price}</td>                            
+                            <td>{numericFormatter(product.price, {
+                                thousandSeparator:".",
+                                decimalSeparator:',',
+                                prefix:'Rp. '  
+                            })}</td>                            
                         </tr>
                     ))
                     }

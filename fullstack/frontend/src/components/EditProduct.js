@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { url } from '../global';
+import { NumericFormat } from 'react-number-format';
 
 const EditProduct = () => {
     const [title, setTitle] = useState('')
@@ -10,7 +12,7 @@ const EditProduct = () => {
 
     const updateProduct = async (e) => {
         e.preventDefault();
-        await axios.post(`http://localhost:8080/products/update/${id}`, {
+        await axios.post(`${url}/update/${id}`, {
             title: title,
             price: price
         })
@@ -18,11 +20,12 @@ const EditProduct = () => {
     }
 
     useEffect(() => {
-        getProductById()
+        getProductById();       
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getProductById = async () => {
-        const response = await axios.get(`http://localhost:8080/products/${id}`);
+        const response = await axios.get(`${url}/${id}`);
         setTitle(response.data.title)
         setPrice(response.data.price)
     }
@@ -36,8 +39,20 @@ const EditProduct = () => {
                 </div>
 
                 <div className="field">
-                    <label className="label">Harga</label>
-                    <input type="text" className="input" value={ price } onChange={ (e) => setPrice(e.target.value) } placeholder="harga" />
+                    <label className="label">Harga</label>                    
+                    <NumericFormat 
+                        thousandSeparator="." 
+                        decimalSeparator=','                         
+                        prefix={'Rp. '}
+                        allowNegative={false}
+                        value={ price } 
+                        // onChange={ (e) => setPrice(e.target.value) } 
+                        placeholder="harga"
+                        className="input has-text-right"
+                        onValueChange={(values) => {
+                            const { floatValue } = values;
+                            setPrice(floatValue);                                                        
+                        }} />
                 </div>
 
                 <div className="field">

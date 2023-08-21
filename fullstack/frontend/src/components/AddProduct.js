@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { url } from '../global'
+import { NumericFormat } from 'react-number-format';
 
 const AddProduct = () => {
     const [title, setTitle] = useState('')
@@ -9,7 +11,7 @@ const AddProduct = () => {
 
     const saveProduct = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:8080/products', {
+        await axios.post(url, {
             title: title,
             price: price
         })
@@ -25,8 +27,20 @@ const AddProduct = () => {
                 </div>
 
                 <div className="field">
-                    <label className="label">Price</label>
-                    <input type="text" className="input" value={ price } onChange={ (e) => setPrice(e.target.value) } placeholder="harga" />
+                    <label className="label">Price</label>                    
+                    <NumericFormat 
+                        thousandSeparator="." 
+                        decimalSeparator=','                         
+                        allowNegative={false}
+                        prefix={'Rp. '}
+                        value={ price } 
+                        // onChange={ (e) => setPrice(e.target.value) } 
+                        placeholder="harga"
+                        className="input has-text-right"
+                        onValueChange={(values) => {
+                            const { floatValue } = values;
+                            setPrice(floatValue);                                                        
+                        }} />
                 </div>
 
                 <div className="field">
