@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export default [
     {
         id: 1,
@@ -23,4 +24,5 @@ export default [
         image: 'http://placekitten.com/500/303',
         description: 'Nyauw is lazy cat, he always sleeping everyday'
     }
-]
+];
+
