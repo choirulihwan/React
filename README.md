@@ -3,6 +3,7 @@ Repository for React app made by me:
 
 # Docs
 - reactjs.org
+- id.react.dev
 
 
 # List of React App:

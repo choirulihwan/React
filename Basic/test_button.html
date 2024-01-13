@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">   
+    <title>React Counter</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>   
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        function ButtonGeneric({label, onClick, counter}) {
+            const disabled = (label == 'Reset' && counter <= 9 && counter >= 0) ? 'disabled' : '';
+            return (
+                <>
+                    <button onClick={onClick} disabled={disabled}>{label}</button>
+                </>
+            );            
+        }
+
+        function TextGeneric({label}) {
+            if (label > 9 || label < 0) {
+                label = 'Done!';
+            }
+
+            return (
+                <>
+                    <span>{label}</span>
+                </>
+            );            
+        }
+
+        function HomePage() {
+            const [counter, setCounter] = React.useState(0);
+
+            function decrement() {
+                setCounter(counter - 1);
+            }
+
+            function increment() {
+                setCounter(counter + 1);
+            }
+
+            function reset() {
+                setCounter(0);
+            }
+
+            return(
+            <>
+                <ButtonGeneric label={"-"} onClick={decrement} counter={counter} />
+                &nbsp;&nbsp;&nbsp;
+                <TextGeneric label={counter} />
+                &nbsp;&nbsp;&nbsp;
+                <ButtonGeneric label={"+"} onClick={increment} counter={counter} />
+                <br />
+                <br />
+                <ButtonGeneric label="Reset" onClick={reset} counter={counter} />
+            </>
+            );
+        }
+
+        root.render(<HomePage />);
+    </script>
+    
+</body>
+</html>

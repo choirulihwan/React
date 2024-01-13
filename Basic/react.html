@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>   
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        function Hello({name}) {
+            return (
+                <>
+                    <h3>Hello, {name ? name : 'Guys'}</h3>
+                </>
+            );
+        }
+
+        function Coreconcept() {
+            return (
+                <>
+                    <h2>Core Concept React</h2>
+                    <p>Berikut 3 hal yang harus dikuasai</p>
+                    <ul>
+                        <li>Components: bagian dari UI yang bisa digunakan kembali. 
+                            Komponen adalah function yang return elemen UI mengunakan JSX
+                        </li>
+                        <li>Props: Properti dari component layaknya properti element pada html</li>
+                        <li>State: Digunakan untuk menghandle interaktifitas yang disebabkan keadaan berubah</li>
+                        <li>State & Hooks: Pasangan antara state & fungsi utk mengubah nilai state
+                            example: const[likes, setLikes] = React.useState(0);
+                        </li>
+                    </ul>
+                </>
+            );
+        }
+
+        function Reactdom() {
+            return (
+                <>
+                    <h2>Belajar React DOM</h2>
+                    <p>React DOM menggunakan <strong>JSX</strong>. Jsx adalah javascript dengan sintaks html, Berikut beberapa aturan JSX:</p>
+                    <ul>
+                        <li>Return 1 element</li>
+        
+                    </ul>
+                </>
+            );
+        }
+
+        function Prerequisites() {
+            return (
+                <>
+                    <h2>Prerequisites</h2>
+                    <p>Berikut hal2 yang harus dipersiapkan terkait modern javascript (ES6)</p>
+                    <ul>
+                        <li>ES6 variables (let & const no var)</li>
+                        <li>Functions and arrow functions</li>
+                        <li>Objects & classes</li>
+                        <li>Arrays & Array methods</li>
+                        <li>Desctructuring menggunakan {}</li>
+                        <li>Template literals</li>
+                        <li>Ternary Operators (if then singkat)</li>
+                        <li>ES Modules & Import/Export Syntax</li>
+                    </ul>
+                </>
+            );        
+        }
+
+        function Editor() {
+            const lists = ['Linter: ESLint', 'Code Formatter: Prettier', 'Browser Extension: React Developer Tools'];
+            return (
+                <>
+                    <h2>Editor Setup</h2>
+                    <p>Kita menggunakan vscode, berikut yang perlu dipersiapkan</p>
+                    <ul>
+                    {
+                        lists.map((list) => (
+                            <li key={list}>{list}</li>
+                        ))
+                    }         
+                    </ul>
+                </>
+            )
+        }
+
+        function BuildTool() {
+            const lists = ['vitejs', 'next.js', 'remix'];
+            return (
+                <>
+                    <h2>Build Tool</h2>
+                    <p>Pengembangan aplikasi react sebaiknya menggunakan build tool. Penggunaan dengan cara include cdn pada html akan membuat code react terbuka.
+                        Berikut build tool yang bisa digunakan:                        
+                    </p>
+                    <ul>
+                    {
+                        lists.map((list) => (
+                            <li key={list}>{list}</li>
+                        ))
+                    }         
+                    </ul>
+                </>
+            )
+        }
+
+        function Vite() {
+            return(
+                <>
+                    <h2>Step by step using Vite</h2>
+                    <p>Berikut langkah2 yang dilakukan:</p>
+                    <ul>
+                        <li>npm i -g pnpm</li>
+                        <li>pnpm create vite</li>
+                        <li>cd [folder]</li>
+                        <li>pnpm install</li>
+                        <li>pnpm run dev</li>
+                    </ul>
+                </>
+            )
+        }
+
+        function ButtonLike() {
+            
+            const [likes, setLikes] = React.useState(0);
+            
+            function handleClick() {
+                setLikes(likes + 1);
+            }
+
+            return (
+                <>
+                    <button onClick={handleClick}>Like ({likes})</button>
+                </>
+            )
+        }
+
+        
+
+        root.render(
+        <>    
+            <h1>Bismillah</h1>
+            
+            <Hello name="Choirul Ihwan" />
+
+            <hr />
+
+            <Coreconcept />
+
+            <Reactdom />
+            
+            <Prerequisites />
+
+            <Editor />
+
+            <BuildTool />
+
+            <Vite />
+            
+            <ButtonLike />
+
+        </>
+        );
+    </script>
+
+</body>
+</html>
