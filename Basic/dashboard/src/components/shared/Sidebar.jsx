@@ -11,7 +11,7 @@ export default function Sidebar() {
         <div className="flex flex-col bg-neutral-900 w-60 p-3 text-white">
             <div className="flex items-center gap-2 px-1 py-3">
                 <FcBullish fontSize={24} />
-                <span className="text-lg">OpenShop</span>
+                <span className="text-lg">Open Dashboard</span>
             </div>
             
             <div className="flex flex-col flex-1 py-8 gap-0.5">
