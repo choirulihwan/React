@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { useState } from 'react';
 
 const popularProducts = [
 	{
@@ -47,12 +48,34 @@ const popularProducts = [
 ]
 
 export default function PopularProducts() {
+	const [dataTable, setDataTable] = useState(popularProducts);
+	const [sortField, setSortField] = useState(null);
+	const [sortOrder, setSortOrder] = useState('asc');
+
+	const handleHeaderClick = (field) => {
+		setSortField(field);
+		setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+
+		setDataTable(
+			dataTable.sort((a, b) => {
+				const fieldA = a[field];
+				const fieldB = b[field];
+
+				if (sortOrder === 'asc') {
+					return fieldA < fieldB ? -1 : 1;
+				} else {
+					return fieldA > fieldB ? -1 : 1;
+				}
+			})
+		);
+	}
+
     return (
         <div>
             <div className='w-[20rem] h-[25rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col'>
-                <strong className="text-gray-700 font-medium">Popular Products</strong>
+                <strong className="text-gray-700 font-medium cursor-pointer" onClick={() => handleHeaderClick('product_stock')}>Popular Products {sortField === 'product_stock' && (sortOrder === 'asc' ? '↑' : '↓')}</strong>
                 <div className='w-full w-full flex-1 text-xs mt-3'>
-                {popularProducts.map((product) => (
+                {dataTable.map((product) => (
 					<Link
 						key={product.id}
 						to={`/product/${product.id}`}

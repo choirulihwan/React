@@ -6,7 +6,11 @@ import {
 	HiOutlineDocumentText,
 	HiOutlineAnnotation,
 	HiOutlineQuestionMarkCircle,
-	HiOutlineCog
+	HiOutlineCog,
+	HiOutlineShieldCheck,
+	HiOutlineStar,
+	HiCreditCard,
+	HiOutlineAtSymbol,
 } from 'react-icons/hi';
 
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -19,8 +23,22 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'products',
 		label: 'Products',
-		path: '/products',
+		path: '#',
 		icon: <HiOutlineCube />
+	},
+	{
+		key: 'laptop',
+		label: 'Laptop',
+		path: '/laptop',
+		icon: <HiOutlineStar />,
+		parent: 'products'
+	},
+	{
+		key: 'handphone',
+		label: 'Handphone',
+		path: '/handphone',
+		icon: <HiOutlineShieldCheck />,
+		parent: 'products'
 	},
 	{
 		key: 'orders',
@@ -37,8 +55,22 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'transactions',
 		label: 'Transactions',
-		path: '/transactions',
+		path: '#',
 		icon: <HiOutlineDocumentText />
+	},
+	{
+		key: 'purchasing',
+		label: 'Purchasing',
+		path: '/purchasing',
+		icon: <HiCreditCard />,
+		parent:'transactions'
+	},
+	{
+		key: 'selling',
+		label: 'Selling',
+		path: '/selling',
+		icon: <HiOutlineAtSymbol />,
+		parent: 'transactions'
 	},
 	{
 		key: 'messages',
