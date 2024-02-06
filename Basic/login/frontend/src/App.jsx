@@ -6,10 +6,12 @@ import Home from './components/Home';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
+  const isLogedIn = window.localStorage.getItem("isLogedIn");
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login />}></Route>
+        <Route path='/' element={isLogedIn ? <Home /> : <Login />}></Route>
         <Route path='/signup' element={<Signup />}></Route>
         <Route path='/home' element={<Home />}></Route>
       </Routes>      

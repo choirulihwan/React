@@ -24,6 +24,7 @@ export default function Login() {
             axios.post("http://localhost:8081/login", values)
             .then(res => {
                 if (res.data === "Success") {
+                    window.localStorage.setItem("isLogedIn", true);
                     navigate('/home');
                 } else {
                     alert (res.data);
